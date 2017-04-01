@@ -1,13 +1,22 @@
-var PORT = process.env.PORT || 3000;
+var PORT    = process.env.PORT || 3000;00;
 var express = require('express');
-var app = express();
-var http =  require('http').Server(app);
-var io = require('socket.io')(http);
+var app     = express();
+var http    = require('http').Server(app);
+var io      = require('socket.io')(http);
 
 app.use(express.static(__dirname + '/public'));
 
-io.on('connection', function(){
+//Socket on connection event
+io.on('connection', function(socket){
   console.log('User connected via socket io');
+
+  socket.on('messageIdClient', function(message){
+    console.log('Client request to broadcast msg  : ' + message.text);
+    socket.broadcast.emit('messageClientId', {text: message.text});
+  });
+
+  //Send message to client when connected
+  socket.emit('messageIdServer', {text: 'Welcome to the chat application'});
 });
 
 http.listen(PORT, function(){
