@@ -7,6 +7,7 @@ socket.on('connect', function() {
 socket.on('messageIdServer', function(msg){
   console.log('New message arrived:');
   console.log(msg.text);
+  jQuery('.messages').append('<p>' + msg.text + '</p>');
 });
 
 //extract form components from index.html

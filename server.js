@@ -12,7 +12,12 @@ io.on('connection', function(socket){
 
   socket.on('messageIdClient', function(message){
     console.log('Client request to broadcast msg  : ' + message.text);
-    socket.broadcast.emit('messageIdServer', message);
+    
+    //broadcast message excluding sender
+    // socket.broadcast.emit('messageIdServer', message);
+
+    //broadcasting messages including sender
+    io.emit('messageIdServer', message);
   });
 
   //Send message to client when connected
