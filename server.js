@@ -1,4 +1,4 @@
-var PORT    = process.env.PORT || 3000;00;
+var PORT    = process.env.PORT || 3000;
 var express = require('express');
 var app     = express();
 var http    = require('http').Server(app);
@@ -12,7 +12,7 @@ io.on('connection', function(socket){
 
   socket.on('messageIdClient', function(message){
     console.log('Client request to broadcast msg  : ' + message.text);
-    socket.broadcast.emit('messageClientId', {text: message.text});
+    socket.broadcast.emit('messageIdServer', message);
   });
 
   //Send message to client when connected
