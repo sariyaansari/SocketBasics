@@ -7,6 +7,10 @@ jQuery('.room-title').text(room);
 //It will be called when client connects to server
 socket.on('connect', function() {
   console.log('Client side socket connect callback');
+  socket.emit('joinRoom', {
+    name: name,
+    room: room
+  });
 });
 
 socket.on('messageIdServer', function(msg){
