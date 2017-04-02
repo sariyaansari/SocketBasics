@@ -4,6 +4,7 @@ var socket = io();
 
 jQuery('.room-title').text(room);
 
+//It will be called when client connects to server
 socket.on('connect', function() {
   console.log('Client side socket connect callback');
 });
