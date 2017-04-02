@@ -20,6 +20,7 @@ io.on('connection', function(socket){
 
   //Send message to client when connected
   socket.emit('messageIdServer', {
+    name: 'System',
     text: 'Welcome to the chat application',
     timestamp: moment.valueOf()
   });
