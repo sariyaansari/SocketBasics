@@ -16,12 +16,14 @@ socket.on('connect', function() {
 socket.on('messageIdServer', function(msg){
   var momentTimeStamp = moment.utc(msg.timeStamp);
   var $messages = jQuery('.messages');
+  var $message = jQuery('<li class="list-group-item"></li>');
 
   console.log('New message arrived:');
   console.log(msg.text);
 
-  $messages.append('<p><strong>' + msg.name + ' ' + momentTimeStamp.local().format('h:mm a') + '</strong></p>');
-  $messages.append('<p>' + msg.text + '</p>');
+  $message.append('<p><strong>' + msg.name + ' ' + momentTimeStamp.local().format('h:mm a') + '</strong></p>');
+  $message.append('<p>' + msg.text + '</p>');
+  $messages.append($message);
 });
 
 //extract form components from index.html
